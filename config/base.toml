@@ -184,7 +184,12 @@ shell = "/usr/bin/ion"
 password = ""
 shell = "/usr/bin/ion"
 
+[users.dev]
+# Password is unset
+password = ""
+shell = "/usr/bin/ion"
+
 # Group settings
 [groups.sudo]
 gid = 1
-members = ["user"]
+members = ["user", "dev"]
