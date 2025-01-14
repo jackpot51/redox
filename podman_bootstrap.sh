@@ -474,6 +474,36 @@ solus()
 	fi
 }
 
+##############################################################################
+# This function takes care of installing all dependencies for building redox on
+# VoidLinux
+# @params:	$1 the emulator to install, virtualbox or qemu
+##############################################################################
+voidlinux()
+{
+
+	echo "Detected VoidLinux"
+
+	if [ "$1" == "qemu" ]; then
+		if [ -z "$(which qemu-system-x86_64)" ]; then
+			sudo xbps-install -S qemu
+		else
+			echo "QEMU already installed!"
+		fi
+	else
+		if [ -z "$(which virtualbox)" ]; then
+			echo "Please install Virtualbox and re-run this script,"
+			echo "or run with -e qemu"
+			exit
+		else
+			echo "Virtualbox already installed!"
+		fi
+	fi
+
+	echo "Installing necessary build tools..."
+	sudo xbps-install -S gcc make nasm wget pkg-config fuse-devel rsync automake gettext-devel libtool po4a patch bison flex gperf libpng-devel perl-HTML-Parser
+}
+
 ######################################################################
 # This function outlines the different options available for bootstrap
 ######################################################################
@@ -707,6 +737,8 @@ else
 	# FreeBSD
 	elif hash 2>/dev/null pkg; then
 		freebsd "$emulator"
+	elif hash 2>/dev/null xbps-install; then
+	  voidlinux "$emulator"
 	# Unsupported platform
 	else
     	printf "\e[31;1mFatal error: \e[0;31mUnsupported platform, please open an issue\e[0m\n"
