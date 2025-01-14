@@ -1,0 +1,40 @@
+# Default build system configuration
+
+include = ["server.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 576
+
+# Package settings
+[packages]
+audiod = "binary"
+cosmic-edit = "binary"
+cosmic-icons = "binary"
+cosmic-files = "binary"
+cosmic-term = "binary"
+dejavu = "binary"
+installer-gui = "binary"
+netsurf = "binary"
+orbdata = "binary"
+orbital = "binary"
+orbutils = "binary"
+pop-icon-theme = "binary"
+#rustpython = "binary" # issues with new Rust nightly
+shared-mime-info = "binary"
+
+[[files]]
+path = "/usr/lib/init.d/20_orbital"
+data = """
+audiod
+orbital orblogin launcher
+"""
+
+# Override console config to not switch to VT 2
+[[files]]
+path = "/usr/lib/init.d/30_console"
+data = """
+getty 2
+getty debug: -J
+"""

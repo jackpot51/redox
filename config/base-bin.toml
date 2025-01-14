@@ -1,0 +1,188 @@
+# Base configuration: This configuration is meant to be included by
+# other configurations rather than use directly. It is the greatest
+# common divisor of all other configurations and misses several
+# parts necessary to create a bootable system.
+
+# General settings
+[general]
+# Do not prompt if settings are not defined
+prompt = false
+
+[packages]
+bootloader = "binary"
+bootstrap = "binary"
+drivers = "binary"
+escalated = "binary"
+initfs = "binary"
+ipcd = "binary"
+kernel = "binary"
+ptyd = "binary"
+uutils = "binary"
+
+## Configuration files
+[[files]]
+path = "/usr/lib/init.d/00_base"
+data = """
+# clear and recreate tmpdir with 0o1777 permission
+rm -r /tmp
+mkdir -m a=rwxt /tmp
+
+ipcd
+ptyd
+escalated
+"""
+
+[[files]]
+path = "/usr/lib/init.d/00_drivers"
+data = """
+pcid /etc/pcid.d/
+"""
+
+[[files]]
+path = "/etc/hostname"
+data = """
+redox
+"""
+
+# https://www.freedesktop.org/software/systemd/man/latest/os-release.html
+[[files]]
+path = "/usr/lib/os-release"
+data = """
+PRETTY_NAME="Redox OS 0.9.0"
+NAME="Redox OS"
+VERSION_ID="0.9.0"
+VERSION="0.9.0"
+ID="redox-os"
+
+HOME_URL="https://redox-os.org/"
+DOCUMENTATION_URL="https://redox-os.org/docs/"
+SUPPORT_URL="https://redox-os.org/community/"
+"""
+# FIXME maybe add VARIANT= and VARIANT_ID= keys depending on the chosen configuration?
+
+[[files]]
+path = "/etc/os-release"
+data = "../usr/lib/os-release"
+symlink = true
+
+## Symlinks for usrmerge
+[[files]]
+path = "/usr"
+data = ""
+directory = true
+mode = 0o755
+
+[[files]]
+path = "/usr/bin"
+data = ""
+directory = true
+mode = 0o755
+
+[[files]]
+path = "/bin"
+data = "usr/bin"
+symlink = true
+
+[[files]]
+path = "/usr/include"
+data = ""
+directory = true
+mode = 0o755
+
+[[files]]
+path = "/include"
+data = "usr/include"
+symlink = true
+
+[[files]]
+path = "/usr/lib"
+data = ""
+directory = true
+mode = 0o755
+
+[[files]]
+path = "/lib"
+data = "usr/lib"
+symlink = true
+
+[[files]]
+path = "/usr/libexec"
+data = ""
+directory = true
+mode = 0o755
+
+[[files]]
+path = "/libexec"
+data = "usr/libexec"
+symlink = true
+
+[[files]]
+path = "/usr/share"
+data = ""
+directory = true
+mode = 0o755
+
+[[files]]
+path = "/share"
+data = "usr/share"
+symlink = true
+
+## Device file symlinks
+[[files]]
+path = "/dev/null"
+data = "/scheme/null"
+symlink = true
+
+[[files]]
+path = "/dev/random"
+data = "/scheme/rand"
+symlink = true
+
+[[files]]
+path = "/dev/urandom"
+data = "/scheme/rand"
+symlink = true
+
+[[files]]
+path = "/dev/zero"
+data = "/scheme/zero"
+symlink = true
+
+[[files]]
+path = "/dev/tty"
+data = "libc:tty"
+symlink = true
+
+[[files]]
+path = "/dev/stdin"
+data = "libc:stdin"
+symlink = true
+
+[[files]]
+path = "/dev/stdout"
+data = "libc:stdout"
+symlink = true
+
+[[files]]
+path = "/dev/stderr"
+data = "libc:stderr"
+symlink = true
+
+# User settings
+[users.root]
+password = "password"
+uid = 0
+gid = 0
+name = "root"
+home = "/root"
+shell = "/usr/bin/ion"
+
+[users.user]
+# Password is unset
+password = ""
+shell = "/usr/bin/ion"
+
+# Group settings
+[groups.sudo]
+gid = 1
+members = ["user"]

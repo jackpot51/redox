@@ -1,0 +1,28 @@
+# Default build system configuration
+
+include = ["../minimal-bin.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 256
+
+# Package settings
+[packages]
+audiod = {}
+cosmic-edit = {}
+cosmic-icons = {}
+cosmic-files = {}
+cosmic-term = {}
+orbdata = {}
+orbital = {}
+orbutils = {}
+pop-icon-theme = {}
+shared-mime-info = {}
+
+[[files]]
+path = "/usr/lib/init.d/20_orbital"
+data = """
+audiod
+orbital orblogin launcher
+"""

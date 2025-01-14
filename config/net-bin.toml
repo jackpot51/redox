@@ -1,0 +1,43 @@
+# Network configuration: includes the base configuration and adds files required
+# for networking
+
+include = ["base.toml"]
+
+# Package settings
+[packages]
+netstack = "binary"
+netutils = "binary"
+
+## Network init
+[[files]]
+path = "/usr/lib/init.d/10_net"
+data = """
+smolnetd
+dnsd
+dhcpd -b
+"""
+
+## Default net configuration (optimized for QEMU)
+[[files]]
+path = "/etc/net/dns"
+data = """
+208.67.222.222
+"""
+
+[[files]]
+path = "/etc/net/ip"
+data = """
+10.0.2.15
+"""
+
+[[files]]
+path = "/etc/net/ip_router"
+data = """
+10.0.2.2
+"""
+
+[[files]]
+path = "/etc/net/ip_subnet"
+data = """
+255.255.255.0
+"""

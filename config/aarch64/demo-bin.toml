@@ -1,0 +1,3 @@
+# Configuration for demonstration
+
+include = ["desktop-bin.toml"]

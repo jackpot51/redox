@@ -1,0 +1,105 @@
+# Configuration for development
+
+include = ["desktop.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 20000
+# Do not prompt if settings are not defined
+prompt = false
+
+# Package settings
+[packages]
+acid = "binary"
+autoconf = "binary"
+automake = "binary"
+cargo = "binary"
+crates-io-index = "binary"
+exampled = "binary"
+gcc13 = "binary"
+gdbserver = "binary"
+gnu-binutils = "binary"
+gnu-grep = "binary"
+gnu-make = "binary"
+libffi = "binary"
+libgmp = "binary"
+libiconv = "binary"
+libjpeg = "binary"
+libogg = "binary"
+liborbital = "binary"
+libpng = "binary"
+libsodium = "binary"
+libvorbis = "binary"
+libxml2 = "binary"
+llvm18 = "binary"
+lua54 = "binary"
+mesa = "binary"
+mesa-glu = "binary"
+nasm = "binary"
+ncurses = "binary"
+nghttp2 = "binary"
+openssl1 = "binary"
+orbclient = "binary"
+patch = "binary"
+pcre = "binary"
+pkg-config = "binary"
+resist = "binary"
+ripgrep = "binary"
+rust = "binary"
+sdl-gfx = "binary"
+sdl1 = "binary"
+sdl1-image = "binary"
+sdl1-mixer = "binary"
+sdl1-ttf = "binary"
+sdl2 = "binary"
+sdl2-gears = "binary"
+sdl2-image = "binary"
+sdl2-mixer = "binary"
+sdl2-ttf = "binary"
+sed = "binary"
+strace = "binary"
+terminfo = "binary"
+xz = "binary"
+zlib = "binary"
+
+[[files]]
+path = "/home/user/test.rs"
+data = """
+fn main() {
+    println!("Hello, Redox!");
+}
+"""
+
+[[files]]
+path = "/home/user/test.c"
+data = """
+#include <stdio.h>
+
+int main(void) {
+	printf("Hello, Redox!\n");
+}
+"""
+
+[[files]]
+path = "/home/user/test.cpp"
+data = """
+#include <iostream>
+
+int main()
+{
+   std::cout << "Hello, Redox!" << std::endl;
+}
+"""
+
+[[files]]
+path = "/home/user/test.py"
+data = """
+print("Hello, Redox!")
+"""
+
+[[files]]
+path = "/home/user/test.lua"
+data = """
+print("Hello, Redox!")
+"""

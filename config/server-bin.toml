@@ -1,0 +1,41 @@
+# Server configuration
+
+include = ["net.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 512
+
+# Package settings
+[packages]
+bash = "binary"
+ca-certificates = "binary"
+contain = "binary"
+coreutils = "binary"
+curl = "binary"
+diffutils = "binary"
+extrautils = "binary"
+findutils = "binary"
+git = "binary"
+installer = "binary"
+ion = "binary"
+kibi = "binary"
+netdb = "binary"
+pkgutils = "binary"
+redoxfs = "binary"
+relibc = "binary"
+resist = "binary"
+userutils = "binary"
+
+[[files]]
+path = "/usr/lib/init.d/30_console"
+data = """
+inputd -A 2
+getty 2
+getty debug: -J
+"""
+
+[[files]]
+path = "/etc/pkg.d/50_redox"
+data = "https://static.redox-os.org/pkg"

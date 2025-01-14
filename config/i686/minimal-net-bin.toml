@@ -1,0 +1,14 @@
+# Minimal network configuration
+
+include = ["../minimal-net-bin.toml"]
+
+# Override the default settings here
+
+# General settings
+[general]
+# Filesystem size in MiB
+# filesystem_size = 1024
+
+# Package settings
+[packages]
+# example = {}

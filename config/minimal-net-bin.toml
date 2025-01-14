@@ -1,0 +1,32 @@
+# Minimal network configuration
+
+include = ["net.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 256
+
+# Package settings
+[packages]
+ca-certificates = "binary"
+coreutils = "binary"
+extrautils = "binary"
+findutils = "binary"
+ion = "binary"
+netdb = "binary"
+pkgutils = "binary"
+smith = "binary"
+userutils = "binary"
+
+[[files]]
+path = "/usr/lib/init.d/30_console"
+data = """
+inputd -A 2
+getty 2
+getty /scheme/debug -J
+"""
+
+[[files]]
+path = "/etc/pkg.d/50_redox"
+data = "https://static.redox-os.org/pkg"

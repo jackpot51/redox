@@ -1,0 +1,10 @@
+# Minimal configuration
+
+include = ["../../minimal-bin.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 256
+# EFI partition size in MiB
+efi_partition_size = 128

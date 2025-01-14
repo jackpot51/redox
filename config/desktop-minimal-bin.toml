@@ -1,0 +1,31 @@
+# Minimal desktop configuration
+
+include = ["minimal-net.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 256
+
+# Package settings
+[packages]
+orbdata = "binary"
+orbital = "binary"
+orbterm = "binary"
+orbutils-background = "binary"
+orbutils-launcher = "binary"
+orbutils-orblogin = "binary"
+
+[[files]]
+path = "/usr/lib/init.d/20_orbital"
+data = """
+orbital orblogin launcher
+"""
+
+# Override console config to not switch to VT 2
+[[files]]
+path = "/usr/lib/init.d/30_console"
+data = """
+getty 2
+getty debug: -J
+"""

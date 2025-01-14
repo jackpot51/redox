@@ -1,0 +1,23 @@
+# Minimal configuration
+
+include = ["base.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 128
+
+# Package settings
+[packages]
+coreutils = "binary"
+extrautils = "binary"
+ion = "binary"
+smith = "binary"
+userutils = "binary"
+
+[[files]]
+path = "/usr/lib/init.d/30_console"
+data = """
+getty 2
+getty debug: -J
+"""
