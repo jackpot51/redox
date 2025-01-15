@@ -9,9 +9,9 @@
 prompt = false
 
 [packages]
+base = {}
 bootloader = {}
 bootstrap = {}
-drivers = {}
 escalated = {}
 initfs = {}
 ipcd = {}

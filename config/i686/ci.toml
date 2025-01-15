@@ -8,6 +8,7 @@ prompt = false
 # Package settings
 [packages]
 audiod = {}
+base = {}
 bootloader = {}
 bootstrap = {}
 ca-certificates = {}
@@ -15,7 +16,6 @@ contain = {}
 coreutils = {}
 dash = {}
 diffutils = {}
-drivers = {}
 escalated = {}
 extrautils = {}
 findutils = {}
